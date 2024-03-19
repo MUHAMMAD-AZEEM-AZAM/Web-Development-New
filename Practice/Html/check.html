@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cloud CSS</title>
+<style>
+.cloud {
+    position: relative;
+    background-color: #fff;
+    border-radius: 50%;
+    width: 200px;
+    height: 100px;
+    box-shadow: 20px 20px 0px 0px #ddd, 
+                40px 20px 0px 0px #ddd, 
+                60px 20px 0px 0px #ddd, 
+                80px 20px 0px 0px #ddd, 
+                100px 20px 0px 0px #ddd, 
+                120px 20px 0px 0px #ddd, 
+                140px 20px 0px 0px #ddd, 
+                160px 20px 0px 0px #ddd, 
+                180px 20px 0px 0px #ddd, 
+                20px 0px 0px 0px #ddd, 
+                40px 0px 0px 0px #ddd, 
+                60px 0px 0px 0px #ddd, 
+                80px 0px 0px 0px #ddd, 
+                100px 0px 0px 0px #ddd, 
+                120px 0px 0px 0px #ddd, 
+                140px 0px 0px 0px #ddd, 
+                160px 0px 0px 0px #ddd, 
+                20px -20px 0px 0px #ddd, 
+                40px -20px 0px 0px #ddd, 
+                60px -20px 0px 0px #ddd, 
+                80px -20px 0px 0px #ddd, 
+                100px -20px 0px 0px #ddd, 
+                120px -20px 0px 0px #ddd, 
+                140px -20px 0px 0px #ddd, 
+                160px -20px 0px 0px #ddd, 
+                20px -40px 0px 0px #ddd, 
+                40px -40px 0px 0px #ddd, 
+                60px -40px 0px 0px #ddd, 
+                80px -40px 0px 0px #ddd, 
+                100px -40px 0px 0px #ddd, 
+                120px -40px 0px 0px #ddd, 
+                140px -40px 0px 0px #ddd;
+}
+
+/* Optional animation for the cloud */
+@keyframes moveCloud {
+    0% {
+        transform: translateX(-20px);
+    }
+    50% {
+        transform: translateX(20px);
+    }
+    100% {
+        transform: translateX(-20px);
+    }
+}
+
+.cloud {
+    animation: moveCloud 5s infinite linear alternate-reverse;
+}
+</style>
+</head>
+<body>
+    <div class="cloud"></div>
+</body>
+</html>

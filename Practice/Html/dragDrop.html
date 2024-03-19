@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Draggable Div</title>
+</head>
+<style>
+    body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+.draggable {
+    width: 100px;
+    height: 50px;
+    background-color: #3498db;
+    color: #fff;
+    text-align: center;
+    line-height: 50px;
+    position: absolute;
+    cursor: move;
+}
+.drop{
+    margin: auto;
+    width: 300px;
+    height: 300px;
+    border: 1px solid black;
+    text-align: center;
+}
+
+</style>
+<body>
+    <div id="draggable" class="draggable" draggable="true">
+        Drag me
+    </div>
+
+    <div class="drop">
+        drop here
+    </div>
+
+    <script src="script.js"></script>
+</body>
+<script>
+    let dragged;
+
+document.addEventListener("drag", function(event) {
+    // store a reference to the dragged element
+    dragged = event.target;
+}, false);
+
+document.addEventListener("dragover", function(event) {
+    // prevent default to allow drop
+    event.preventDefault();
+}, false);
+
+document.addEventListener("drop", function(event) {
+    // prevent default action (open as link for some elements)
+    event.preventDefault();
+
+    // move dragged element to the drop target's location
+    if (event.target.classList.contains("drop")) {
+        const newDiv = dragged.cloneNode(true);
+        newDiv.classList.remove("draggable");
+        newDiv.classList.add("dropped");
+        newDiv.style.position = "absolute";
+        newDiv.style.left = (event.clientX - newDiv.clientWidth / 2) + "px";
+        newDiv.style.top = (event.clientY - newDiv.clientHeight / 2) + "px";
+        newDiv.classList.add("draggable");
+        document.body.appendChild(newDiv);
+    }
+}, false);
+
+</script>
+</html>

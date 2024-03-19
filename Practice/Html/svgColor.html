@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body{
+      text-align: center;
+    }
+    #controls {
+      margin-bottom: 10px;
+    }
+
+    canvas {
+      border: 1px solid #000;
+    }
+
+    .image-container {
+      display: flex;
+      margin-bottom: 20px;
+      justify-content: center;
+    }
+
+    .image-container img {
+      margin-right: 10px;
+      cursor: pointer;
+    }
+  </style>
+  <title>Kids Painting Tool</title>
+</head>
+<body>
+  <div class="image-container">
+    <img src="images/animal.png" alt="Image 1" id="image1" style="width: 100px;">
+    <img src="images/Alpaca.png" alt="Image 2" id="image2" style="width: 100px;">
+    <!-- Add more image elements as needed -->
+  </div>
+
+  <div id="controls">
+    <label for="colorPicker">Select color:</label>
+    <input type="color" id="colorPicker">
+
+    <label for="brushSize">Brush size:</label>
+    <input type="range" id="brushSize" min="1" max="20" value="5">
+
+    <button id="clearCanvas">Clear Canvas</button>
+    <button id="saveCanvas">Save Artwork</button>
+  </div>
+
+  <canvas id="paintCanvas" width="800" height="600"></canvas>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const canvas = document.getElementById('paintCanvas');
+      const context = canvas.getContext('2d');
+      const colorPicker = document.getElementById('colorPicker');
+      const brushSizeInput = document.getElementById('brushSize');
+      const clearCanvasBtn = document.getElementById('clearCanvas');
+      const saveCanvasBtn = document.getElementById('saveCanvas');
+      const image1 = document.getElementById('image1');
+      const image2 = document.getElementById('image2');
+      // Add more image variables as needed
+
+      let painting = false;
+
+      function startPosition(e) {
+        painting = true;
+        draw(e);
+      }
+
+      function endPosition() {
+        painting = false;
+        context.beginPath();
+      }
+
+      function draw(e) {
+        if (!painting) return;
+
+        context.lineWidth = brushSizeInput.value;
+        context.lineCap = 'round';
+        context.strokeStyle = colorPicker.value;
+
+        context.lineTo(e.clientX - canvas.offsetLeft, e.clientY - canvas.offsetTop);
+        context.stroke();
+        context.beginPath();
+        context.moveTo(e.clientX - canvas.offsetLeft, e.clientY - canvas.offsetTop);
+
+        setTimeout(() => {
+          context.closePath();
+        },1000);
+      }
+
+      function clearCanvas() {
+        context.clearRect(0, 0, canvas.width, canvas.height);
+      }
+
+      function saveCanvas() {
+        const image = canvas.toDataURL();
+        const link = document.createElement('a');
+        link.href = image;
+        link.download = 'artwork.png';
+        link.click();
+      }
+
+      function loadImage(src) {
+        const img = new Image();
+        img.onload = function () {
+          context.drawImage(img, 0, 0, canvas.width, canvas.height);
+        };
+        img.src = src;
+      }
+
+      image1.addEventListener('click', function () {
+        loadImage('images/animal.png');
+      });
+
+      image2.addEventListener('click', function () {
+        loadImage('images/Alpaca.png');
+      });
+
+      // Add more image click event listeners as needed
+
+      canvas.addEventListener('mousedown', startPosition);
+      canvas.addEventListener('mouseup', endPosition);
+      canvas.addEventListener('mousemove', draw);
+
+      clearCanvasBtn.addEventListener('click', clearCanvas);
+      saveCanvasBtn.addEventListener('click', saveCanvas);
+    });
+  </script>
+</body>
+</html>
