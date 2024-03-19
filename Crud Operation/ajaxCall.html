@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+
+    body{
+        text-align: center;
+    }
+    .selected {
+    background-color: lightblue; /* Change background color for selected options */
+    font-weight: bold; /* Add bold font for selected options */
+}
+#genres{
+    width: 200px;
+    height: 100px;
+    padding: 5px;
+}
+form{
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    text-align: left;
+    gap: 10px;
+}
+.sectionDiv{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+    width: fit-content;
+    height: fit-content;
+    padding: 20px;
+    max-height: 800px;
+    overflow: auto;
+}
+.genresDiv{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.align{
+    display: flex;
+    gap: 20px;
+}
+h2{
+    color: tomato;
+}
+.story{
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+    padding: 20px;
+}
+.story img{
+    width: 100px;
+}
+</style>
+<body>
+    <h1>Admin Stories Panel</h1>
+    <div class="align">
+    <div id="stories-container" class="sectionDiv"></div>
+    <div class="sectionDiv">
+        <h2>Upload New Story</h2>
+    <form id="myForm">
+        <label for="title">Story Title:</label>
+        <input type="text" id="title" name="title" placeholder="Enter the story title">
+        
+        <label for="story">Story:</label>
+        <textarea id="story" name="story" placeholder="Enter the story content"></textarea>
+        
+        <label for="image">Select Image:</label>
+    <input type="file" id="imageInput" name="image" accept="image/*">
+        
+        <div class="genresDiv">
+            <label for="genres">Genres:</label>
+            <select id="genres" name="genres[]" multiple>
+                <option value="action">Adventure</option>
+                <option value="adventure">Mystery</option>
+                <option value="horror">Friendship</option>
+                <option value="funny">Fairy Tales</option>
+                <option value="fiction">Historical</option>
+                <option value="moral">Animals</option>
+                <option value="moral">Fantasy</option>
+                <option value="moral">Diversity</option>
+            </select>
+        </div>
+        
+        <label for="level">Story Level:</label>
+        <input type="text" id="level" name="level" placeholder="Enter the story level">
+        
+        <label for="color">Story Color:</label>
+        <input type="text" id="color" name="color" placeholder="Enter the story color">
+        <button id="postButton">Post Stories</button>
+    </form>
+    </div>
+    </div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="ajaxCall.js"></script>    
+</body>
+</html>

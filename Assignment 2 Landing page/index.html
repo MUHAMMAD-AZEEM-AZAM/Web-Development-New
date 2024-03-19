@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+
+    body{
+        padding: 20px;
+    }
+    header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    nav {
+        display: flex;
+        width: 50%;
+        justify-content: space-evenly;
+    }
+
+    nav a {
+        text-decoration: none;
+        color: #042E34;
+    }
+
+    nav a:hover{
+        /* transition: all 0.5s; */
+        transform: scale(1.1);
+        color: #042E34;
+        font-weight: bold;
+    }
+
+    button {
+        color: #042E34;
+    }
+
+    .filledButton {
+        border: none;
+        background-color: #042E34;
+        color: white;
+        padding: 10px 15px;
+        border-radius: 30px;
+    }
+
+    .textButton {
+        border: none;
+        background-color: white;
+        font-weight: bold;
+    }
+
+    .container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 40px;
+    }
+
+    .box1 {
+        width: 50%;
+    }
+
+    .box2 {
+        width: 40%;
+        max-width: 300px;
+    }
+    .imgDiv{
+        width: 50%;
+        text-align: right;
+    }
+    .imgDiv img{
+        width: 40%;
+    }
+</style>
+
+<body>
+    <header>
+        <img src="logo.png" alt="">
+        <nav>
+            <a href="">Solution</a>
+            <a href="">Product</a>
+            <a href="">Company</a>
+            <a href="">Insight</a>
+        </nav>
+        <div>
+            <button class="textButton">Login</button>
+            <button class="filledButton">Sign up &#10095</button>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="box1">
+            <h1>Secure your money with precision.</h1>
+            <p>Join over million people who choose synflow for fast and secure future banking.</p>
+            <button class="filledButton">Open Account</button>
+        </div>
+        <div class="imgDiv">
+            <img src="Picture1.png" alt="">
+        </div>
+    </div>
+
+    <div class="container">
+            <div class="container box2">
+                <div>
+                    <h1>140+</h1>
+                    <p>Total Currencies</p>
+                </div>
+                <div>
+                    <h1>$1.2B</h1>
+                    <p>Revenue Generated</p>
+                </div>
+        </div>
+        <div class="imgDiv">
+            <img src="Picture2.png" alt="">
+            <img src="Picture3.png" alt="">
+        </div>
+    </div>
+</body>
+
+</html>
