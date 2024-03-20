@@ -5,6 +5,12 @@ var postButtonClick=function() {
         postStory();
     });
 }
+var updateButtonClick=function() {
+    $('#updateButton').click(function(event) {
+        event.preventDefault(); // Prevent default form submission
+        postStory();
+    });
+}
 var toggleGenersClass=function() {
     // Add click event listener to each option
     $('#genres option').click(function() {
@@ -23,10 +29,11 @@ $(document).ready(function() {
     getStories();
     postButtonClick();
     toggleGenersClass();
+    updateButtonClick();
     
-    // Event delegation for delete buttons
+    // Event delegation for dynamically created button
     $('#stories-container').on('click', '.delete-button', deleteStory);
-    // $('#stories-container').on('click', '.update-button', editStory);
+    $('#stories-container').on('click', '.update-button', editStory);
 });
 
 
@@ -37,7 +44,6 @@ function getStories() {
         dataType: 'json',
         success: function(data) {
             displayStory(data);
-            console.log(data)
         },
     });
 }
@@ -47,13 +53,13 @@ function displayStory(stories) {
     container.append('<h2>My Stories</h2>');
 
     $.each(stories, function(index, story) {   
-        console.log(story.id)  
+        console.log(story)  
         var storyHtml = `
             <div class="story">
                 <h3>${story.title}</h3>
                 <p>${story.story}</p>
                 <button class="delete-button" storyId="${story._id}">Delete</button>
-                <button class="update-button" story="${story}">Update</button>
+                <button class="update-button" story='{"_id":"${story._id}","title":"${story.title}","story":"${story.story}","level":"${story.level}","genres":"${story.genres}","color":"${story.color}"}'>Update</button>
             </div>
             <hr />
         `;
@@ -66,35 +72,36 @@ function displayStory(stories) {
     // ----------------------------------post Stories----------------------------------
     // Function to handle posting of stories
     function postStory() {
-        var title = $('input[name="title"]').val();
-        var story = $('textarea[name="story"]').val();
-        var image = 'https://images.pexels.com/photos/20604213/pexels-photo-20604213/free-photo-of-a-tall-building-with-windows-and-a-blue-sky.jpeg'     
-        // var image = $('input[name="image"]').val();
-        var genres = $('#genres').val(); 
+        let title = $('input[name="title"]').val();
+        let story = $('textarea[name="story"]').val();
+        let image = 'https://images.pexels.com/photos/20604213/pexels-photo-20604213/free-photo-of-a-tall-building-with-windows-and-a-blue-sky.jpeg'     
+        // let image = $('input[name="image"]').val();
+        let genres = $('#genres').val(); 
         console.log(genres); // Get selected genres as an array
-        var level = $('input[name="level"]').val();
-        var color = $('input[name="color"]').val();
+        let level = $('input[name="level"]').val();
+        let color = $('input[name="color"]').val();
 
         if (!Array.isArray(genres)) {
             genres = [genres];
         }
-        // let storyId=$(this).attr("storyId");
 
-        // if(storyId){
-        //      $.ajax({
-        //     url: "http://localhost:5000/books/" + storyId,
-        //     method: "PUT",
+        let storyId=$(this).attr("storyId");
+
+        if(storyId){
+             $.ajax({
+            url: "http://localhost:5000/books/" + storyId,
+            method: "PUT",
       
-        //     data: { title, story,image,genres,level,color },
-        //     success: function () {
-        //       displayStories(); // Refresh the list after creating a new story
-        //     },
-        //     error: function (error) {
-        //       console.error("Error creating story:", error);
-        //     },
-        //   });
+            data: { title, story,image,genres,level,color },
+            success: function () {
+              displayStories(); // Refresh the list after creating a new story
+            },
+            error: function (error) {
+              console.error("Error creating story:", error);
+            },
+          });
 
-        // }
+        }
        
         // AJAX request to post the data
         $.ajax({
@@ -144,27 +151,25 @@ function displayStory(stories) {
 
 
     // ----------------------------------Edit Stories----------------------------------
-    // function editStory(){
-    //     var title = $('input[name="title"]');
-    //     var story = $('textarea[name="story"]');
-    //     var image = 'https://images.pexels.com/photos/20604213/pexels-photo-20604213/free-photo-of-a-tall-building-with-windows-and-a-blue-sky.jpeg'     
-    //     // var image = $('input[name="image"]');
-    //     var genres = $('#genres'); 
-    //     console.log(genres); // Get selected genres as an array
-    //     var level = $('input[name="level"]');
-    //     var color = $('input[name="color"]');
+    function editStory(){
+        let titleFeild= $('input[name="title"]');
+        let storyFeild= $('textarea[id="story"]');
+        let genresFeild = $('#genres'); 
+        let levelFeild= $('input[name="level"]');
+        let colorFeild= $('input[name="color"]');
 
 
-
-    //     let story=$(this).attr('story');
-    //     title.val()=story.title;
-    //     story.val()=story.story;
-    //     image.val()=story.image;
-    //     genres.val()=story.genres;
-    //     level.val()=story.level;
-    //     color.val()=story.color;
-    // }
-    // // ----------------------------------update Stories----------------------------------
+        let story=$(this).attr('story');
+        story=JSON.parse(story)
+        console.log(story)
+        titleFeild.val(story.title);
+        storyFeild.val(story.story);
+        genresFeild.val(story.genres);
+        console.log(genresFeild.val())
+        levelFeild.val(story.level);
+        colorFeild.val(story.color);
+    }
+    // ----------------------------------update Stories----------------------------------
     // function updateStory(){
 
        
