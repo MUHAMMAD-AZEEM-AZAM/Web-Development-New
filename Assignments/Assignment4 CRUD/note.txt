@@ -3,6 +3,6 @@ on local host with node js so
 the crud operation are not perform well.
 
 i also attach my node js server in my
-serverSide folder with name booksServer....
+serverSide folder with name "booksServer"
 
-
+for view i attach my image file

@@ -1,0 +1,11 @@
+
+.carousel-item img {
+    object-fit: cover; /* Prevents stretching/cropping */
+    height: 350px; 
+    max-width: 1000px;
+    margin: auto;
+  }   
+  .carousel{
+    margin: 80px;
+    margin-top: 50px;
+  } 
