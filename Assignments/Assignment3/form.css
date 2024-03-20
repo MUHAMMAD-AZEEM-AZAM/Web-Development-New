@@ -1,0 +1,18 @@
+form {
+    display: flex;
+    width: 300px;
+    flex-direction: column;
+    justify-content: center;
+    gap: 10px;
+}
+
+input[type='submit'] {
+    width: 50%;
+    margin: auto;
+}
+
+.error-message {
+    color: red;
+    font-size: 10px;
+    display: none;
+}
