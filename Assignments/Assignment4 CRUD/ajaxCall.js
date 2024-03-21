@@ -8,7 +8,8 @@ var postButtonClick=function() {
 var updateButtonClick=function() {
     $('#updateButton').click(function(event) {
         event.preventDefault(); // Prevent default form submission
-        postStory();
+        var storyId = $(this).attr("storyId");console.log("Storyid is : " + storyId);
+        postStory(storyId);
     });
 }
 var toggleGenersClass=function() {
@@ -53,7 +54,7 @@ function displayStory(stories) {
     container.append('<h2>My Stories</h2>');
 
     $.each(stories, function(index, story) {   
-        console.log(story)  
+        // console.log(story)  
         var storyHtml = `
             <div class="story">
                 <h3>${story.title}</h3>
@@ -71,7 +72,7 @@ function displayStory(stories) {
 
     // ----------------------------------post Stories----------------------------------
     // Function to handle posting of stories
-    function postStory() {
+    function postStory(storyId) {
         let title = $('input[name="title"]').val();
         let story = $('textarea[name="story"]').val();
         let image = 'https://images.pexels.com/photos/20604213/pexels-photo-20604213/free-photo-of-a-tall-building-with-windows-and-a-blue-sky.jpeg'     
@@ -85,16 +86,21 @@ function displayStory(stories) {
             genres = [genres];
         }
 
-        let storyId=$(this).attr("storyId");
-
         if(storyId){
              $.ajax({
-            url: "http://localhost:5000/books/" + storyId,
+            url: "http://localhost:5000/books/"+storyId,
             method: "PUT",
       
-            data: { title, story,image,genres,level,color },
+            data: JSON.stringify({ // Convert data to JSON format
+                title: title,
+                story: story,
+                image: image,
+                genres: genres,
+                level: level,
+                color: color
+            }),
             success: function () {
-              displayStories(); // Refresh the list after creating a new story
+              getStories(); // Refresh the list after creating a new story
             },
             error: function (error) {
               console.error("Error creating story:", error);
@@ -102,7 +108,7 @@ function displayStory(stories) {
           });
 
         }
-       
+       else
         // AJAX request to post the data
         $.ajax({
             url: 'http://localhost:5000/books',
@@ -157,20 +163,40 @@ function displayStory(stories) {
         let genresFeild = $('#genres'); 
         let levelFeild= $('input[name="level"]');
         let colorFeild= $('input[name="color"]');
-
-
+    
         let story=$(this).attr('story');
-        story=JSON.parse(story)
-        console.log(story)
+        story=JSON.parse(story);
+        console.log(story);
+    
         titleFeild.val(story.title);
         storyFeild.val(story.story);
-        genresFeild.val(story.genres);
-        console.log(genresFeild.val())
         levelFeild.val(story.level);
         colorFeild.val(story.color);
+    
+        // Split genres string into an array of values
+        let genresArray = story.genres.split(',');
+        console.log("Genres array:", genresArray);
+        updateSelectedOptions(genresArray);
+    
+        // Set the storyId attribute of the updateButton
+        $('#updateButton').attr("storyId", story._id);
+        console.log("Update button id: " + $('#updateButton').attr("storyId"));
     }
+    
     // ----------------------------------update Stories----------------------------------
     // function updateStory(){
 
        
     // }
+
+
+    var updateSelectedOptions = function(selectedValues) {
+        // Deselect all options
+        $('#genres option:selected').prop('selected', false);
+
+        // selectedValues=[selectedValues];
+        // Select options based on the provided array of values
+        selectedValues.forEach(function(value) {
+            $('#genres option[value="' + value + '"]').prop('selected', true);
+        });
+    }
