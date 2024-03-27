@@ -4,8 +4,8 @@ import cors from 'cors';
 import {body, validationResult} from 'express-validator'
 import bodyParser from 'body-parser';
 const app = express();
-const MONGO_URL = 'mongodb+srv://mazeem:Azeem$1913@cluster0.goybwtg.mongodb.net/';
-const MONGO_URL_BOOk= 'mongodb+srv://azeem:Azeem$1913@cluster0.stvjsyv.mongodb.net/Books';
+const MONGO_URL = 'mongodb+srv://credential@cluster0.goybwtg.mongodb.net/';
+const MONGO_URL_BOOk= 'mongodb+srv://credential@cluster0.stvjsyv.mongodb.net/Books';
 
 // // Middleware to enable CORS
 app.use(cors()); //for use in differnet system
