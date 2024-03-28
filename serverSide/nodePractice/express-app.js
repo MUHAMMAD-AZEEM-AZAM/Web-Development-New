@@ -24,7 +24,7 @@ server.set("view engine","ejs");
 
 
 //for mongo db connection...
-mongoose.connect("mongodb+srv://credential@cluster0.stvjsyv.mongodb.net/").then(()=>{
+mongoose.connect("mongodb+srv://azeem:Azeem$1913@cluster0.stvjsyv.mongodb.net/").then(()=>{
     console.log("Mongoose Connect Successfully")
 }).catch(error=>console.log("Mongoose Connection error: "+error))
 
