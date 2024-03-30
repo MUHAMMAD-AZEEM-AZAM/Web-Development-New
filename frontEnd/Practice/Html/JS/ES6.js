@@ -5,7 +5,7 @@ let array = ["Azeem", "Ali", "Usman", "dawood", "usamashabirbhatti"]
 var newArray = array
 console.log(newArray)
 
-//------------------arrow function------------------
+console.log('//------------------arrow function------------------')
 
 console.log(array.map((ele) => ele.length))
 
@@ -14,7 +14,7 @@ var value = () => {
     console.log('function run')
     return array.length * 10
 }
-//----------------------rest operator----------------------
+console.log('//----------------------rest operator----------------------')
 var value = (...args) => args.map((ele) => ele += ele)//rest operator
 var value = (...args) => {
     let sum = 0;
@@ -25,7 +25,7 @@ var value = (...args) => {
 }
 console.log(value(1, 2, 3, 4, 5, 6))
 
-//----------------------spread Operator----------------------
+console.log('//----------------------spread Operator----------------------')
 let arr1 = [1, 2, 3, 4, 5]
 let arr2 = ['azeem', 'azam', 'ali', 'usman']
 
@@ -44,12 +44,12 @@ var color = "#fffff"
 finalObject = { ...obj1, color }
 console.log(finalObject)
 
-//----------------------destructring----------------------
+console.log('//----------------------destructring----------------------')
 var { title, story } = obj1 //use same name(different name cause error)
 // console.log(title)
 // console.log(story)
 obj2 = {
-    title, //useing same name access the value
+    title, //using same name access the value
     story
 }
 console.log(obj2)
@@ -60,7 +60,7 @@ genres = genresString.split(" ")
 finalObject = { ...obj1, color, genres }
 console.log(finalObject)
 
-//-------------------array function: map-------------------
+console.log('//-------------------array function: map-------------------')
 var newObj = arr3.map((element) => {
     if (isNaN(element)) {
         return "my name is " + element
@@ -71,7 +71,15 @@ var newObj = arr3.map((element) => {
 console.log(newObj)
 console.log(arr3)//remain same previous values not update
 
-//-------------------function: reduce-------------------
+
+
+console.log('//-------------------split function-------------------')
+const genresString1 = "nature moral funny horror"
+genres = genresString1.split(" ")
+
+
+
+console.log('//-------------------function: reduce-------------------')
 //return a value and we use previous value
 var sum = ([1, 2, 3, 4, 5]).reduce((acc, element) => acc + element, 0)
 console.log(sum)
@@ -93,12 +101,12 @@ var totalLevel = multiObject.reduce((acc, ele) => acc + ele.level, 0)
 console.log(totalLevel)
 
 
-//-------------------function:  filter-------------------
+console.log('//-------------------function:  filter-------------------')
 //if the function return true value it add the item in array and not if false
 filterArray = multiObject.filter(item => item.level >= 10)
 console.log(filterArray)
 
-//-------------------function:  findIndex and find()-------------------
+console.log('//-------------------function:  findIndex and find()-------------------')
 const numArray = [-1, -2, -3, -4, 1, 2, 3, 4, 5]
 const result = numArray.find(item => item % 2 === 0 && item >= 0)
 console.log(result)
@@ -106,7 +114,14 @@ console.log(result)
 const index = numArray.findIndex(item => item % 2 === 0 && item >= 0)
 console.log(index)
 
-//-------------------classes and oop-------------------
+console.log('//-------------------function:  splice-------------------')
+const fruits=['apple','banana','mango','lemon','kiwi']
+
+fruits.splice(2,0,'orange','watermelon')
+console.log(fruits)
+
+
+console.log('//-------------------classes and oop-------------------')
 //    using function
 function Person(name, dateOfBirth) {
     this.name = name
@@ -142,3 +157,11 @@ class pilot extends PersonNew{
 
 var rashid=new pilot('Rashid',1985,10,'Fighter','PAF11001')
 console.log(rashid.getData())
+
+
+console.log('//----------------------------iterables----------------------------')
+let arr4=[]
+for (const x of "w3Schools"){
+    arr4.push(x)
+}
+console.log(arr4)
