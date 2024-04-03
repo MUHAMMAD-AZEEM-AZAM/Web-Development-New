@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/fb0bfe3fae.js" crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&display=swap"
+        rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+        rel="stylesheet">
+    <title>Document</title>
+</head>
+<style>
+    .bold {
+        border: 1px solid #3263C0;
+        height: 1.2px;
+        background-color: #3263C0;
+    }
+
+    .flex {
+        display: flex;
+    }
+
+    .spaceBetween {
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .contributeButton {
+        background-color: #fbe500;
+        padding: 5px 10px 5px 10px;
+        border: none;
+    }
+
+    .Merriweather-regular {
+        font-family: "Merriweather", serif;
+        font-weight: 300;
+        font-style: normal;
+    }
+
+    .icon {
+        font-size: 24px;
+        margin-left: 20px;
+    }
+
+    .center {
+        display: flex;
+        flex-direction: column;
+        align-items: end;
+    }
+
+    .middle{
+        align-items: center;
+    }
+    ul {
+        list-style: none;
+        display: flex;
+        gap: 2em;
+    }
+
+    a {
+        text-decoration: none;
+        color: black;
+    }
+
+    .left {
+        width: 70%;
+    }
+
+    .right {
+        display: flex;
+        flex-direction: column;
+        align-items: start;
+        justify-content: start;
+        margin-left: 20px;
+        font-size: x-small;
+        width: 30%;
+        font-family: "Roboto", sans-serif;
+        font-weight: 500;
+    }
+
+    .imgDiv {
+        /* width: 60%; */
+        position: relative;
+        height:271px
+    }
+
+    .imgDiv img {
+        height: 270px;
+    }
+
+    .overlay {
+        position: absolute;
+        margin: 0;
+        bottom: 0%;
+        left: 0%;
+        width: 70%;
+        background-color: white;
+        font-family: "Roboto", sans-serif;
+        font-weight: 600;
+        font-size: 20px;
+    }
+
+    .textDiv {
+        font-size: x-small;
+        margin-left: 20px;
+    }
+
+    .flex2 {
+        margin-top: 20px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+
+    .card {
+        width: 250px;
+        font-size: x-small;
+    }
+
+    .card img {
+        width: 100%;
+        margin: 0;
+    }
+
+    .card p,
+    h3 {
+        margin-top: 3px;
+        margin-bottom: 0;
+    }
+
+    .right p,
+    h4 {
+        margin: 0;
+        margin-top: 3px;
+    }
+    .right p{
+        color: #3263C0;
+    }
+
+    h3 {
+
+        font-family: "Roboto", sans-serif;
+        font-weight: 600;
+        font-size: 16px;
+    }
+</style>
+
+<body>
+    <hr class="bold">
+    <div class="flex spaceBetween">
+        <img src="images/image.png" alt="Logo">
+        <div class="flex middle">
+            <div class="center">
+                <p class="Merriweather-regular">Support The Moscow Times!</p>
+                <button class="contributeButton">contribute today</button>
+            </div>
+            <i class="fa fa-user-circle-o icon"></i>
+        </div>
+    </div>
+    <hr>
+    <div class="flex spaceBetween">
+        <div class="flex middle">
+            <i class="fa-solid fa-bars"></i>
+            <ul>
+                <li><a href="/news">News</a></li>
+                <li><a href="/news">Ukraine War</a></li>
+                <li><a href="/news">Climate</a></li>
+                <li><a href="/news">Regions</a></li>
+                <li><a href="/news">Business</a></li>
+                <li><a href="/news">Opinion</a></li>
+                <li><a href="/news">Arts and Life</a></li>
+                <li><a href="/news">Podcasts</a></li>
+                <li><a href="/news">Archive</a></li>
+            </ul>
+        </div>
+        <i class="fa fa-search"></i>
+    </div>
+    <hr class="bold">
+
+    <div class="flex">
+        <div class="left">
+            <div class="flex">
+                <div class="imgDiv">
+                    <img src="https://static.themoscowtimes.com/image/article_1360/c1/65425345341543.jpg" alt="">
+                    <p class="overlay">A Toxic Invasive Plant Has Conquered Russia. Authorities Want to Fight It by
+                        Punishing Dacha Owner.</p>
+                </div>
+                <div class="textDiv">
+                    <div>
+                        <h3>Russia Reports Drone Attacks Over 1,000 Km From Ukraine</h3>
+                        <p>A defense source in Kyiv said that Ukraine's GUR military intelligence agency was behind the
+                            strikes.</p>
+                        <p>2 MIN READ</p>
+                        <hr>
+                    </div>
+                    <br>
+                    <br>
+                    <div>
+                        <h3>Russia Reports Drone Attacks Over 1,000 Km From Ukraine</h3>
+                        <p>A defense source in Kyiv said that Ukraine's GUR military intelligence agency was behind the
+                            strikes.</p>
+                        <p>2 MIN READ</p>
+                        <hr>
+                    </div>
+                </div>
+            </div>
+            <div class="flex2">
+                <div class="card">
+                    <img src="https://static.themoscowtimes.com/image/article_1360/d5/TASS_68599031.jpg" alt="">
+                    <p>CLAIMING GAINS</p>
+                    <h3>Russia Says Seized 400 Sq Km of Ukrainian Land</h3>
+                    <p>2 MIN READ</p>
+                </div>
+                <div class="card">
+                    <img src="https://static.themoscowtimes.com/image/article_1360/d5/TASS_68599031.jpg" alt="">
+                    <p>CLAIMING GAINS</p>
+                    <h3>Russia Says Seized 400 Sq Km of Ukrainian Land</h3>
+                    <p>2 MIN READ</p>
+                </div>
+                <div class="card">
+                    <img src="https://static.themoscowtimes.com/image/article_1360/d5/TASS_68599031.jpg" alt="">
+                    <p>CLAIMING GAINS</p>
+                    <h3>Russia Says Seized 400 Sq Km of Ukrainian Land</h3>
+                    <p>2 MIN READ</p>
+                </div>
+                <div class="card">
+                    <img src="https://static.themoscowtimes.com/image/article_1360/d5/TASS_68599031.jpg" alt="">
+                    <p>CLAIMING GAINS</p>
+                    <h3>Russia Says Seized 400 Sq Km of Ukrainian Land</h3>
+                    <p>2 MIN READ</p>
+                </div>
+                <div class="card">
+                    <img src="https://static.themoscowtimes.com/image/article_1360/d5/TASS_68599031.jpg" alt="">
+                    <p>CLAIMING GAINS</p>
+                    <h3>Russia Says Seized 400 Sq Km of Ukrainian Land</h3>
+                    <p>2 MIN READ</p>
+                </div>
+                <div class="card">
+                    <img src="https://static.themoscowtimes.com/image/article_1360/d5/TASS_68599031.jpg" alt="">
+                    <p>CLAIMING GAINS</p>
+                    <h3>Russia Says Seized 400 Sq Km of Ukrainian Land</h3>
+                    <p>2 MIN READ</p>
+                </div>
+            </div>
+        </div>
+        <div class="right">
+            <h3>Just In</h3>
+            <p>16 MINUTES AGO</p>
+            <h4>U.S. Warnings ‘Too General’ to Prevent Crocus Attack, Russia’s Spy Chief Says</h4>
+            <hr>
+            <p>10 MINUTES AGO</p>
+            <h4>U.S. Warnings ‘Too General’ to Prevent Crocus Attack, Russia’s Spy Chief Says</h4>
+            <hr>
+            <p>10 MINUTES AGO</p>
+            <h4>U.S. Warnings ‘Too General’ to Prevent Crocus Attack, Russia’s Spy Chief Says</h4>
+            <hr>
+            <p>10 MINUTES AGO</p>
+            <h4>U.S. Warnings ‘Too General’ to Prevent Crocus Attack, Russia’s Spy Chief Says</h4>
+            <hr>
+            <p>10 MINUTES AGO</p>
+            <h4>U.S. Warnings ‘Too General’ to Prevent Crocus Attack, Russia’s Spy Chief Says</h4>
+            <hr>
+            <p>10 MINUTES AGO</p>
+            <h4>U.S. Warnings ‘Too General’ to Prevent Crocus Attack, Russia’s Spy Chief Says</h4>
+            <hr>
+            <p>10 MINUTES AGO</p>
+            <h4>U.S. Warnings ‘Too General’ to Prevent Crocus Attack, Russia’s Spy Chief Says</h4>
+            <hr>
+            <p>10 MINUTES AGO</p>
+            <h4>U.S. Warnings ‘Too General’ to Prevent Crocus Attack, Russia’s Spy Chief Says</h4>
+            <hr>
+            <p>10 MINUTES AGO</p>
+            <h4>U.S. Warnings ‘Too General’ to Prevent Crocus Attack, Russia’s Spy Chief Says</h4>
+            <hr>
+            <p>10 MINUTES AGO</p>
+            <h4>U.S. Warnings ‘Too General’ to Prevent Crocus Attack, Russia’s Spy Chief Says</h4>
+            <hr>
+            <p>10 MINUTES AGO</p>
+            <h4>U.S. Warnings ‘Too General’ to Prevent Crocus Attack, Russia’s Spy Chief Says</h4>
+            <hr>
+            <div class="card">
+                <img src="https://static.themoscowtimes.com/image/article_1360/d5/TASS_68599031.jpg" alt="">
+                <p>CLAIMING GAINS</p>
+                <h3>Russia Says Seized 400 Sq Km of Ukrainian Land</h3>
+                <p>2 MIN READ</p>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>
