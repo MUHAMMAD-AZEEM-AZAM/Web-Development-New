@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <title>Document</title>
+</head>
+<style>
+    .main {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+    }
+
+    form {
+        width: 800px
+    }
+
+    form div {
+        display: flex;
+        justify-content: center;
+        align-items: baseline;
+        margin-top: 20px;
+        padding: 20px;
+        background-color: lightgray;
+
+    }
+
+    form div label {
+        width: 30%;
+    }
+
+    form input[type="text"] {
+        padding: 5px 10px 5px 10px;
+        width: 70%;
+    }
+
+    table th,
+    td {
+        width: 20%;
+        text-align: center;
+    }
+
+    #goToTop {
+        position: relative;
+        bottom: 4px;
+        left: 4px;
+        position: fixed;
+        padding: 10px;
+        border: 1px solid;
+        z-index: 4;
+    }
+
+    #goToTop a {
+        color: black;
+        text-decoration: none;
+    }
+
+    #imgCont {
+        position: relative;
+    }
+
+    #i1 {
+        z-index: 2;
+        position: absolute;
+        width: 100px;
+    }
+
+    #i2 {
+        z-index: 1;
+    }
+
+    p::before {
+        content: "**";
+    }
+
+    p::after {
+        content: "Css Applied";
+    }
+
+    p::first-letter {
+        text-decoration: underline;
+        font-weight: bold;
+    }
+</style>
+<script>
+    window.onload = bindings
+
+    function bindings() {
+        button = document.getElementById("additem")
+        button.addEventListener('click', createItem)
+        getUser()
+    }
+
+    function getUser() {
+        $.ajax({
+            url: 'https://freetestapi.com/api/v1/users',
+            method: 'GET',
+            success: function (data) {
+                createTable(data)
+            },
+            error: function () { console.log("Fail fetching data") }
+        })
+    }
+
+    $(document).ready(function(){
+        $("#calculate").on('click',(event)=>{
+            event.preventDefault()
+            // alert('button Clicked')
+            $.ajax({
+                url:'localhost://5555',
+                method:'POST',
+                contentType:'application/json',
+                data:{
+                        operand1:"operand1",
+                        operand2:"operand2",
+                },function (result){
+                    $("#result").text(result)
+                }
+            })
+            console.log(event)
+        })
+    })
+
+    function createTable(data) {
+        myDiv = document.getElementById('result')
+        tableHeader = `<table>
+            <tr>
+                <th>Id</th>
+                <th>name</th>
+                <th>age</th>
+                <th>email</th>
+                <th>username</th>
+            </tr>
+        </table>`
+        $('#result').append(tableHeader)
+
+        for (var i = 0; i < data.length && i < 10; i++) {
+            tableData = `
+            <tr>
+                <td>${data[i].id}</td>
+                <td>${data[i].name}</td>
+                <td>${data[i].age}</td>
+                <td>${data[i].email}</td>
+                <td>${data[i]['username']}</td>
+            </tr>
+            `
+            $('#result').append(tableData)
+        }
+        console.log(data[0])
+    }
+
+    function createItem() {
+        list = document.getElementById("myList")
+        itemValue = document.getElementById("newitem")
+
+        newItem = itemValue.value
+        item = document.createElement('li')
+        item.innerHTML = newItem
+        list.append(item)
+    }
+
+</script>
+
+<body>
+    <div class="main" id="menu">
+        <h2>Question 1</h2>
+        <form>
+            <div><label>Name</label><input type="text" name="name" /></div>
+            <div><label>Email </label><input type="text" name="email" value="" /></div>
+            <div><label>Gender </label>
+                <div>
+                    <input type="radio" name="gender" value="m" /> Male
+                    <input type="radio" name="gender" value="f" /> Female
+                </div>
+            </div>
+            <div><label>Subjects </label>
+                <div>
+                    <input type="checkbox" name="subject" value="OOP" /> OOP
+                    <input type="checkbox" name="subject" value="DB" checked /> Database
+                </div>
+            </div>
+            <div><input type="submit" value="Submit"></div>
+        </form>
+    </div>
+
+    <div class="main">
+        <h2>Question 2</h2>
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-4 col-lg-3">
+                    Content 1
+                </div>
+                <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+                    Content 2
+                </div>
+                <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+                    Content 3
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="main">
+        <h2>Question 3</h2>
+        <ul id="myList">
+            <li>Item 1</li>
+            <li>Item 2</li>
+            <li>Item 3</li>
+        </ul>
+        <input type="text" id="newitem">
+        <button id="additem">Add Item</button>
+    </div>
+
+    <div class="main">
+        <h2>Question 4</h2>
+        <div id="result">
+
+        </div>
+        <div class="result"></div>
+    </div>
+
+    <div id="goToTop"><a href="#menu">Top</a></div>
+
+    <div id="imgCont">
+        <img id="i1" src="images/Picture2.png" alt="">
+        <img id="i2" src="images/Picture1.png" alt="">
+    </div>
+
+    <div class="subject">
+        <a href="index.html">Math</a>
+        <a href="tags.html">English</a>
+        <a href="layoutPractice.html">Physics</a>
+    </div>
+    <p>This is some text.</p>
+
+    <div class="jqueryBind">
+        <label for="operand1">Operand 1:</label> <input type="text" id="operand1">
+        <label for="operand2">Operand 2:</label> <input type="text" id="operand2">
+        <button id="calculate">Calculate</button>
+        <div id="result"> </div>
+    </div>
+    <div style="height: 100px;"></div>
+</body>
+
+</html>

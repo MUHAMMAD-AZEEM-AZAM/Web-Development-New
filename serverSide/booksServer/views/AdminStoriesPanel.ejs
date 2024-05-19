@@ -1,97 +1,99 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Admin Stories Panel</title>
+    <style>
+        body {
+            text-align: center;
+        }
+
+        .selected {
+            background-color: lightblue;
+            font-weight: bold;
+        }
+
+        #genres {
+            width: 200px;
+            height: 100px;
+            padding: 5px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            width: 300px;
+            text-align: left;
+            gap: 10px;
+        }
+
+        .sectionDiv {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+            width: fit-content;
+            height: fit-content;
+            padding: 20px;
+            max-height: 900px;
+            overflow: auto;
+        }
+
+        .genresDiv {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .align {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        h2 {
+            color: tomato;
+        }
+
+        .story {
+            box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+            padding: 20px;
+        }
+
+        .story img {
+            width: 100px;
+        }
+
+        .btn {
+            width: 40%;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .genre-box {
+            display: inline-block;
+            margin: 5px;
+            padding: 5px 10px;
+            background-color: #f1f1f1;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .remove-genre {
+            cursor: pointer;
+            color: red;
+            margin-left: 5px;
+        }
+
+        #pastedImageContainer img {
+            width: 40px;
+        }
+    </style>
 </head>
-<style>
-    body {
-        text-align: center;
-    }
-
-    .selected {
-        background-color: lightblue;
-        /* Change background color for selected options */
-        font-weight: bold;
-        /* Add bold font for selected options */
-    }
-
-    #genres {
-        width: 200px;
-        height: 100px;
-        padding: 5px;
-    }
-
-    form {
-        display: flex;
-        flex-direction: column;
-        width: 300px;
-        text-align: left;
-        gap: 10px;
-    }
-
-    .sectionDiv {
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-        box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
-        width: fit-content;
-        height: fit-content;
-        padding: 20px;
-        max-height: 800px;
-        overflow: auto;
-    }
-
-    .genresDiv {
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-    }
-
-    .align {
-        display: flex;
-        gap: 20px;
-        justify-content: center;
-    }
-
-    h2 {
-        color: tomato;
-    }
-
-    .story {
-        box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
-        padding: 20px;
-    }
-
-    .story img {
-        width: 100px;
-    }
-
-    .btn {
-        width: 40%;
-    }
-
-    img {
-        max-width: 100%;
-        height: auto;
-    }
-
-    .genre-box {
-        display: inline-block;
-        margin: 5px;
-        padding: 5px 10px;
-        background-color: #f1f1f1;
-        border: 1px solid #ccc;
-        border-radius: 5px;
-    }
-
-    #pastedImageContainer img {
-        width: 40px;
-    }
-</style>
-
 <body>
     <h1>Admin Stories Panel</h1>
     <div class="align">
@@ -130,14 +132,13 @@
                 <label for="color">Story Color:</label>
                 <input type="text" id="color" name="color" placeholder="Enter the story color">
                 <div class="align">
-                    <button class="btn" id="updateButton" storyId="1">Update Stories</button>
+                    <button class="btn" id="updateButton" storyId="">Update Stories</button>
                     <button class="btn" id="postButton">Post Stories</button>
                 </div>
             </form>
         </div>
     </div>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="ajaxCall.js"></script>
+    <script src="/ajaxCall.js"></script>
 </body>
-
 </html>

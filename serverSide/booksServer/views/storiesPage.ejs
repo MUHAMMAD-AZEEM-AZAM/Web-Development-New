@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stories</title>
+    <link rel="stylesheet" href="/stories.css">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <h1>Stories</h1>
+    <div class="align">
+        <!-- - when not risk of Cross-Site Scripting otherwise use = -->
+        <% for(let i = 0; i < stories.length; i++) { %>
+            <a href="/stories/detail/<%= stories[i]._id %>">
+            
+                <div class="storyDiv" style="background-image: url(<%=stories[i].image%>);background-repeat: no-repeat;">
+                    <h3><%= stories[i].title %></h3>         
+    
+                    <div  class="detail" style=" background-color: <%= stories[i].color %>;">
+                        <p>Level: <%= stories[i].level %></p>
+                        
+                        <div class="genresDiv">
+                            <% stories[i].genres.forEach(gen => { %>
+                                <p class="genres"><%= gen %></p>
+                            <% }); %>
+                        </div>
+                        <!-- <a  href="">Read Story &#8594;</a> -->
+                    </div>
+                </div>
+            </a>
+        <% } %>
+    </div>
+    
+</body>
+
+</html>

@@ -98,7 +98,7 @@ multiObject = [{
 }]
 console.log(multiObject)
 var totalLevel = multiObject.reduce((acc, ele) => acc + ele.level, 0)
-console.log(totalLevel)
+console.log("level",totalLevel)
 
 
 console.log('//-------------------function:  filter-------------------')

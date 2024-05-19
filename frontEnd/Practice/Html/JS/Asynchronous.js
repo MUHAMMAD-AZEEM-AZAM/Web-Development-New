@@ -1,23 +1,24 @@
 console.log('//---------------------CallBack---------------------')
-// function getUser(id, callback) {
-//     setTimeout(function () {
-//         console.log("Reading User");
-//         callback({ id: id, name: "Usman" });
-//     }, 2000)
-// }
+function getUser(id, callback) {
+    setTimeout(function () {
+        console.log("Reading User");
+        callback({ id: id, name: "Usman" });
+    }, 2000)
+}
 
 
-// console.log("Before");
-// getUser(1, function (userObj) {
-//     console.log("Received User");
-//     console.log(userObj);
-// });
-// console.log("After");
+console.log("Before");
+getUser(1, function (userObj) {
+    console.log("Received User");
+    console.log(userObj);
+});
+console.log("After");
 
 
 console.log('//---------------------Promises and Chaning Promises---------------------')
 const postListPromises = new Promise((reslove, reject) => {
     $.get('https://jsonplaceholder.typicode.com/posts', (response) => {
+        console.log("PostList Response using promisses",response)
         reslove(response)
     }).fail(err => {
         reject(new Error('Call failed for get post list ' + err))

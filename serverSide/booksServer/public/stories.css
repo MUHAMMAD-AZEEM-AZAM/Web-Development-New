@@ -1,0 +1,67 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+.storyDiv{
+    width: 400px;
+    height: 400px;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+    border-radius: 10px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    background-size: contain;
+    color: white;
+    text-decoration: none;
+    /* overflow: hidden; */
+}
+ h1{
+    margin: 20px;
+    text-align: center;
+ }
+
+.align {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+.storyDiv h3{
+    font-family: "Montserrat";
+    margin: 20px 10px 0px 10px;
+    color: #fff01c;
+
+    text-shadow: 10px 10px 25px rgb(81,67,21),
+    -10px 10px 25px rgb(81,67,21),
+    -10px -10px 25px rgb(81,67,21),
+    10px -10px 25px rgb(81,67,21);
+
+}
+.genres{
+    width:fit-content;
+    border-radius: 12px;
+}
+.genresDiv{
+    padding: 0;
+    margin: 0;
+    display: flex;
+    gap: 3px;
+    width: 100%;
+    justify-content: center;
+}
+a{
+text-decoration: none;
+color: white;
+font-size: large;
+}
+.detail{
+    width: 100%;
+    border-radius: 0 0 10px 10px;
+    height: 80px;
+    opacity: 0.9;
+}
+p{
+    margin: 5px;
+}

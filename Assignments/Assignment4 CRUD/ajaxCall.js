@@ -1,42 +1,79 @@
-// ----------------------------------Read Stories----------------------------------
-var postButtonClick=function() {
+$(document).ready(function() {
+    postButtonClick();
+    updateButtonClick();
+    getStories();
+    handleImagePaste();
+    handleGenreSelection();
+        // Event delegation for dynamically created button
+        $('#stories-container').on('click', '.delete-button', deleteStory);
+        $('#stories-container').on('click', '.update-button', editStory);
+});
+
+var selectedGenres = [];
+
+var postButtonClick = function() {
     $('#postButton').click(function(event) {
         event.preventDefault(); // Prevent default form submission
         postStory();
     });
-}
-var updateButtonClick=function() {
+};
+
+var updateButtonClick = function() {
     $('#updateButton').click(function(event) {
         event.preventDefault(); // Prevent default form submission
-        var storyId = $(this).attr("storyId");console.log("Storyid is : " + storyId);
+        var storyId = $(this).attr("storyId");
         postStory(storyId);
     });
-}
-var toggleGenersClass=function() {
-    // Add click event listener to each option
-    $('#genres option').click(function() {
-        $(this).toggleClass('selected'); // Toggle the 'selected' class
+};
+
+function handleGenreSelection() {
+    $('#genres').change(function() {
+        selectedGenres = $(this).val();
+        displaySelectedGenres();
+    });
+    $('#genres').keypress(function(event) {
+        if (event.which === 13) { // Enter key pressed
+            event.preventDefault();
+            $('#genres').blur();
+            displaySelectedGenres();
+        }
     });
 }
 
-// var deleteButtonClick=function(){
-//     $('#deleteButton').click(function(){
-//         deleteStory();
-//     })
-// }
+function displaySelectedGenres() {
+    $('#selectedGenres').empty();
+    selectedGenres.forEach(function(genre) {
+        $('#selectedGenres').append(`<div class="genre-box">${genre}</div>`);
+    });
+}
 
-$(document).ready(function() {
-    // Call the functions to initialize event handlers
-    getStories();
-    postButtonClick();
-    toggleGenersClass();
-    updateButtonClick();
-    
-    // Event delegation for dynamically created button
-    $('#stories-container').on('click', '.delete-button', deleteStory);
-    $('#stories-container').on('click', '.update-button', editStory);
-});
-
+function handleImagePaste() {
+    document.addEventListener('paste', function(event) {
+        var items = (event.clipboardData || event.originalEvent.clipboardData).items;
+        for (var index in items) {
+            var item = items[index];
+            if (item.kind === 'file') {
+                var blob = item.getAsFile();
+                var reader = new FileReader();
+                reader.onload = function(event) {
+                    $('#pastedImage').remove();
+                    var img = document.createElement('img');
+                    img.id = 'pastedImage';
+                    img.src = event.target.result;
+                    img.style.maxWidth = '100%';
+                    img.style.height = 'auto';
+                    $('#pastedImageContainer').append(img);
+                    // Set the file to the input field for upload
+                    var fileInput = document.getElementById('imageInput');
+                    var dataTransfer = new DataTransfer();
+                    dataTransfer.items.add(blob);
+                    fileInput.files = dataTransfer.files;
+                };
+                reader.readAsDataURL(blob);
+            }
+        }
+    });
+}
 
 function getStories() {
     $.ajax({
@@ -48,19 +85,23 @@ function getStories() {
         },
     });
 }
+
 function displayStory(stories) {
     var container = $('#stories-container');
     container.empty();
     container.append('<h2>My Stories</h2>');
 
-    $.each(stories, function(index, story) {   
-        // console.log(story)  
+    $.each(stories, function(index, story) {
         var storyHtml = `
             <div class="story">
                 <h3>${story.title}</h3>
                 <p>${story.story}</p>
+                <img src="${story.image}" alt="Story Image" style="max-width: 100%; height: auto;">
+                <p>Genres: ${story.genres.join(', ')}</p>
+                <p>Level: ${story.level}</p>
+                <p>Color: ${story.color}</p>
                 <button class="delete-button" storyId="${story._id}">Delete</button>
-                <button class="update-button" story='{"_id":"${story._id}","title":"${story.title}","story":"${story.story}","level":"${story.level}","genres":"${story.genres}","color":"${story.color}"}'>Update</button>
+                <button class="update-button" story='${JSON.stringify(story)}'>Update</button>
             </div>
             <hr />
         `;
@@ -68,72 +109,36 @@ function displayStory(stories) {
     });
 }
 
+function postStory(storyId) {
+    var formData = new FormData();
+    formData.append('title', $('#title').val());
+    formData.append('story', $('#story').val());
+    formData.append('image', $('#imageInput')[0].files[0]);
+    formData.append('genres', selectedGenres);
+    formData.append('level', $('#level').val());
+    formData.append('color', $('#color').val());
 
+    var url = storyId ? `http://localhost:5000/books/${storyId}` : 'http://localhost:5000/books';
+    var method = storyId ? 'PUT' : 'POST';
 
-    // ----------------------------------post Stories----------------------------------
-    // Function to handle posting of stories
-    function postStory(storyId) {
-        let title = $('input[name="title"]').val();
-        let story = $('textarea[name="story"]').val();
-        let image = 'https://images.pexels.com/photos/20604213/pexels-photo-20604213/free-photo-of-a-tall-building-with-windows-and-a-blue-sky.jpeg'     
-        // let image = $('input[name="image"]').val();
-        let genres = $('#genres').val(); 
-        console.log(genres); // Get selected genres as an array
-        let level = $('input[name="level"]').val();
-        let color = $('input[name="color"]').val();
-
-        if (!Array.isArray(genres)) {
-            genres = [genres];
+    $.ajax({
+        url: url,
+        method: method,
+        contentType: false,
+        processData: false,
+        data: formData,
+        success: function(response) {
+            console.log('Story posted successfully: ' + response);
+            alert('Story posted successfully');
+            getStories();
+        },
+        error: function(error) {
+            console.error("Error creating story:", error);
+            alert("Failed to post story. Please try again.");
         }
+    });
+}
 
-        if(storyId){
-             $.ajax({
-            url: "http://localhost:5000/books/"+storyId,
-            method: "PUT",
-      
-            data: JSON.stringify({ // Convert data to JSON format
-                title: title,
-                story: story,
-                image: image,
-                genres: genres,
-                level: level,
-                color: color
-            }),
-            success: function () {
-              getStories(); // Refresh the list after creating a new story
-            },
-            error: function (error) {
-              console.error("Error creating story:", error);
-            },
-          });
-
-        }
-       else
-        // AJAX request to post the data
-        $.ajax({
-            url: 'http://localhost:5000/books',
-            method: 'POST',
-            contentType: 'application/json', // Specify the content type as JSON
-            data: JSON.stringify({ // Convert data to JSON format
-                title: title,
-                story: story,
-                image: image,
-                genres: genres,
-                level: level,
-                color: color
-            }),
-            success: function(response) { // Success callback function
-                console.log('Story posted successfully: ' + title);
-                alert('Story posted successfully: ' + title);
-                getStories();
-                console.log('Response:', response);
-            },
-            error: function(error) { // Error callback function
-                console.error("Error creating story:", error);
-                alert("Failed to post story. Please try again.");
-            }
-        });
-    }
     
     // ----------------------------------delete Stories----------------------------------
     function deleteStory(){
@@ -184,10 +189,6 @@ function displayStory(stories) {
     }
     
     // ----------------------------------update Stories----------------------------------
-    // function updateStory(){
-
-       
-    // }
 
 
     var updateSelectedOptions = function(selectedValues) {
@@ -200,3 +201,5 @@ function displayStory(stories) {
             $('#genres option[value="' + value + '"]').prop('selected', true);
         });
     }
+
+
