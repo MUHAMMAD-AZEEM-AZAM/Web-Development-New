@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    body{
+        text-align: center;
+    }
+    
+</style>
+<body>
+    <div class="detailFlex">
+      <div class="boxA">
+        <a href="/stories/add_to_favourite/<%=story._id %>">Add To Favourite</a>
+        <h1><%= story.title %></h1>
+        <img src="<%= story.image %>" alt="">
+        <p><%= story.story %></p>
+      </div>
+      <!-- <div class="boxB">
+      </div> -->
+    </div>
+    <script>
+        // Function to set a cookie
+        function setCookie(name, value, days) {
+            const date = new Date();
+            date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+            const expires = "expires=" + date.toUTCString();
+            document.cookie = name + "=" + value + ";" + expires + ";path=/";
+        }
+
+        // Set a cookie after 2 seconds
+        setTimeout(() => {
+            const storyId = "<%= story._id %>";
+            const storyTitle = "<%= story.title %>";
+            const lastReadBook = JSON.stringify({ id: storyId, title: storyTitle });
+            setCookie("lastReadBook", lastReadBook, 30); // Cookie expires in 30 days
+        }, 2000);
+    </script>
+  </body>
+</html>

@@ -1,0 +1,6 @@
+<h1>Poems For kids</h1>
+<div class="align" style="overflow-x: auto; white-space: nowrap;">
+<% for( let i = 0; i < videos.length; i++ ) { %>
+    <iframe style="display: inline-block; margin-right: 10px;" width="350" height="250" src="https://www.youtube.com/embed/<%= videos[i].video_id %>" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<% } %>
+</div>
