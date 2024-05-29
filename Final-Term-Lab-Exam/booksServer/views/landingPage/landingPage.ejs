@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<body>
+    <div class="main">
+   <%-include('carousel')  %>
+   <%-include('section',{data:stories,title:'Stories'})  %>
+   <%- include('videoSection',{videos:videos}) %>
+   <h1>Games</h1>
+   <a href="/games">
+       <img class="imgSection" src="images/gamesSection.gif" alt="">
+   </a>
+   <%-include('contactUs') %>
+    </div>
+    <div class="footer">
+        <h3>
+            KidsFun 2024
+        </h3>
+        <p>All Right Reserved</p>
+        </div>   
+</body>
+<script src="showDialog.js"></script>
+</html>
+<!-- <dialog open>Continue Reading</dialog> -->

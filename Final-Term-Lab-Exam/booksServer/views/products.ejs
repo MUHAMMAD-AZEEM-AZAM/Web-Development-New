@@ -1,0 +1,49 @@
+<style>
+    .product-list{
+        display: flex;
+        flex-wrap: wrap;
+    }
+    .product-card {
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        padding: 16px;
+        margin: 16px;
+        max-width: 300px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+    .product-card h2 {
+        margin-top: 0;
+    }
+    .product-card .price {
+        font-size: 1.2em;
+        color: #e91e63;
+    }
+    .product-card .category {
+        font-size: 0.9em;
+        color: #757575;
+    }
+    .product-card .featured {
+        color: #ff9800;
+        font-weight: bold;
+    }
+    a{
+        text-decoration: none;
+        color: black;
+    }
+</style>
+<body>
+    <div class="product-list">
+        <% products.forEach(function(product) { %>
+            <a href="/products/<%= product._id %>"><div class="product-card">
+                <h2><%= product.name %></h2>
+                <p><%= product.description %></p>
+                <p class="price">$<%= product.price.toFixed(2) %></p>
+                <p class="category"><%= product.category %></p>
+                <!-- <% if (product.isFeatured) { %>
+                    <p class="featured">Featured Product</p>
+                <% } %> -->
+            </div></a>
+            
+        <% }); %>
+    </div>
+</body>

@@ -1,0 +1,5 @@
+npm init -y
+npm i express mongoose
+npm run test
+npm i -g nodemon
+npm run dev
